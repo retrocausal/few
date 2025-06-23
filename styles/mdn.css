@@ -1,0 +1,214 @@
+:root {
+  --text: #4e4e4e;
+  --font-family: monospace, Arial, sans-serif;
+  --border-color: #4e4e4e;
+  --background-color: #f0e1d2;
+  --shadow: #0f1e2d;
+}
+
+/*Theming*/
+/* Dark Theme */
+[data-theme="dark"] {
+  --background-color: #4e4e4e;
+  --text: #f0e1d2;
+  --border-color: #f0e1d2;
+  --shadow: #0f1e2d;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--text);
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+main {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: calc(100% - 6rem);
+  flex: 1 1 auto;
+  overflow: hidden scroll;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--background-color);
+  --cols: 24;
+  color: var(--text);
+}
+img,
+object,
+embed,
+svg {
+  max-width: 100%;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+aside,
+article {
+  box-sizing: border-box;
+  --basis: 24;
+  flex-basis: calc((var(--basis) / var(--cols)) * 100%);
+  overflow: hidden scroll;
+  max-height: 100%;
+  background-color: var(--background-color);
+  color: var(--text);
+}
+main > aside {
+  --basis: 5;
+  padding: 1rem 0.5rem;
+}
+main > aside:last-child {
+  --basis: 4;
+}
+article {
+  --basis: 15;
+  box-shadow: -1px 1px 10px 1px var(--shadow) inset; /*horizontal, vertical, blur, spread, color*/
+  padding: 1rem;
+  border-radius: 0.099rem;
+}
+header {
+  height: 3.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: -1px 1px 10px 1px var(--shadow); /*horizontal, vertical, blur, spread, color*/
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  color: var(--text);
+  background-color: var(--background-color);
+  --cols: 24;
+  z-index: 2;
+}
+header > div {
+  --basis: 24;
+  flex-basis: calc((var(--basis) / var(--cols)) * 100%);
+  box-sizing: border-box;
+}
+header .logo {
+  --basis: 2;
+  padding: 0 0.25rem;
+}
+header .account {
+  --basis: 3;
+  padding: 0 0.25rem;
+}
+header .options {
+  flex: 1 1 auto;
+  padding: 0 1rem;
+  display: flex;
+  --cols: 24;
+  flex-flow: row wrap;
+}
+header .options > div {
+  --basis: 24;
+  flex-basis: calc((var(--basis) / var(--cols)) * 100%);
+  box-sizing: border-box;
+}
+.options .search {
+  --basis: 3;
+}
+.options .theme {
+  --basis: 2;
+  padding: 0 0.25rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  position: relative;
+}
+.options .theme .icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--text);
+  cursor: pointer;
+}
+.options .theme .drawer {
+  position: absolute;
+  top: calc(2.75rem + 0.25rem + 1px);
+  left: 0;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 5px 1px var(--shadow) inset,
+    0px -2px 5px 1px var(--shadow) inset;
+  z-index: 3;
+  transition: opacity 1.2s ease-in-out;
+  background-color: var(--background-color);
+  color: var(--text);
+  padding: 0.5rem;
+}
+.options .theme .drawer .theme-option {
+  width: 100%;
+  height: 2.75rem;
+  display: flex;
+  flex-flow: row wrap;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+}
+.options .theme .drawer .theme-option:hover,
+.options .theme .drawer .theme-option:hover .icon {
+  font-weight: bold;
+  box-sizing: border-box;
+  background-color: var(--border-color);
+  color: var(--background-color);
+}
+.options .theme .drawer .theme-option:hover {
+  box-shadow: 1px -1px 5px 1px var(--shadow) inset; /* horizontal, vertical, blur, spread color*/
+}
+.options .theme .drawer .theme-option span {
+  flex: 1 1 auto;
+  text-align: center;
+  pointer-events: none;
+}
+.options .theme .drawer .theme-option .icon {
+  padding: 0 0.125rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--text);
+  pointer-events: none;
+}
+.options .top-level-nav {
+  flex: 1 1 auto;
+}
+footer {
+  height: 2rem;
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: 1px -1px 15px 1px var(--shadow); /* horizontal, vertical, blur, spread color*/
+  background-color: var(--background-color);
+  color: var(--text);
+}
+.hide {
+  display: none;
+  opacity: 0;
+}
+.show {
+  opacity: 1;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+svg,
+svg > path {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.options .theme .drawer .theme-option svg,
+.options .theme .drawer .theme-option svg path {
+  pointer-events: none;
+}

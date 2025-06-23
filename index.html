@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-in" data-theme-config="manual">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>F.E.W. - Front End Web</title>
+    <script type="application/javascript">
+      document.onreadystatechange = () => {
+        console.log("Document state changed:", document.readyState);
+        if (document.readyState === "interactive") {
+          const tCfg = sessionStorage.getItem("tCfg");
+          if (tCfg) {
+            if (tCfg !== "auto") {
+              const currentTheme = sessionStorage.getItem("currentTheme");
+              if (currentTheme) {
+                document.body.dataset.theme = currentTheme;
+              }
+            }
+            console.log("Setting theme config from session storage:", tCfg);
+            document.documentElement.dataset.themeConfig = tCfg;
+          }
+        }
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/latest/normalize.css"
+    />
+    <link rel="stylesheet" href="styles/mdn.css" />
+    <!-- <script type="application/javascript">
+      //types
+      var string = "string";
+      var number = 123;
+      var boolean = true;
+      var object = { key: "value" };
+      var array = [1, 2, 3];
+      var nullValue = null;
+      var undefinedValue;
+
+      //context
+      /**
+       * Global context, TDZ begins for var2
+       * */
+      var var1 = "original";
+      var var3 = "1";
+      //hoisted, accessible before declaration
+      console.log(typeof iLog, var1, var3);
+      iLog("hello");
+
+      let var2 = "Goodbye";
+      //TDZ ends for var2
+      iLog(var2);
+      function iLog() {
+        let var1 = "duplicate"; //overridden block scoped;
+        console.log(var1, var3);
+        var var3 = 2;
+        var3++;
+        console.log(var3);
+        if (true) {
+          var3 = 10;
+        }
+        console.log(var3);
+      }
+      var iLog = "not a function anymore";
+      console.log(typeof iLog, var1, var3);
+    </script>
+    <script type="application/javascript">
+      //exploring closures and scope
+      const fn = [];
+      const arr = [1, 2, 3, 4, 5];
+      for (var i = 0; i < arr.length; i++) {
+        console.log(i, arr[i]);
+        fn.push(function () {
+          console.log(i, arr[i]);
+        });
+      }
+      fn[0]();
+
+      for (let i = 0; i < arr.length; i++) {
+        console.log(i, arr[i]);
+        fn[i] = function () {
+          console.log(i, arr[i]);
+        };
+      }
+      fn[0]();
+
+      fn.length = 0; //clear the array
+      for (var i = 0; i < arr.length; i++) {
+        console.log(i, arr[i]);
+        (function (index) {
+          fn.push(function () {
+            console.log(index, arr[index]);
+          });
+        })(i);
+      }
+      fn[2]();
+    </script> -->
+
+    <script type="module" src="scripts/mdn.js"></script>
+  </head>
+
+  <body data-theme="light">
+    <header>
+      <div class="logo"></div>
+      <div class="options">
+        <div class="top-level-nav"></div>
+        <div class="search"></div>
+        <div class="theme">
+          <div id="theme-toggler" class="icon">
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 12C18 15.3137 15.3137 18 12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12Z"
+                fill="#1C274C"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V3C12.75 3.41421 12.4142 3.75 12 3.75C11.5858 3.75 11.25 3.41421 11.25 3V2C11.25 1.58579 11.5858 1.25 12 1.25ZM4.39861 4.39861C4.6915 4.10572 5.16638 4.10572 5.45927 4.39861L5.85211 4.79145C6.145 5.08434 6.145 5.55921 5.85211 5.85211C5.55921 6.145 5.08434 6.145 4.79145 5.85211L4.39861 5.45927C4.10572 5.16638 4.10572 4.6915 4.39861 4.39861ZM19.6011 4.39887C19.894 4.69176 19.894 5.16664 19.6011 5.45953L19.2083 5.85237C18.9154 6.14526 18.4405 6.14526 18.1476 5.85237C17.8547 5.55947 17.8547 5.0846 18.1476 4.79171L18.5405 4.39887C18.8334 4.10598 19.3082 4.10598 19.6011 4.39887ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H3C3.41421 11.25 3.75 11.5858 3.75 12C3.75 12.4142 3.41421 12.75 3 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM20.25 12C20.25 11.5858 20.5858 11.25 21 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H21C20.5858 12.75 20.25 12.4142 20.25 12ZM18.1476 18.1476C18.4405 17.8547 18.9154 17.8547 19.2083 18.1476L19.6011 18.5405C19.894 18.8334 19.894 19.3082 19.6011 19.6011C19.3082 19.894 18.8334 19.894 18.5405 19.6011L18.1476 19.2083C17.8547 18.9154 17.8547 18.4405 18.1476 18.1476ZM5.85211 18.1479C6.145 18.4408 6.145 18.9157 5.85211 19.2086L5.45927 19.6014C5.16638 19.8943 4.6915 19.8943 4.39861 19.6014C4.10572 19.3085 4.10572 18.8336 4.39861 18.5407L4.79145 18.1479C5.08434 17.855 5.55921 17.855 5.85211 18.1479ZM12 20.25C12.4142 20.25 12.75 20.5858 12.75 21V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V21C11.25 20.5858 11.5858 20.25 12 20.25Z"
+                fill="#1C274C"
+              />
+            </svg>
+          </div>
+          <div id="theme-drawer" class="drawer hide">
+            <div id="light" class="theme-option">
+              <div class="icon">
+                <?xml version="1.0" encoding="utf-8"?>
+                <svg
+                  width="800px"
+                  height="800px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 12C18 15.3137 15.3137 18 12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12Z"
+                    fill="#1C274C"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V3C12.75 3.41421 12.4142 3.75 12 3.75C11.5858 3.75 11.25 3.41421 11.25 3V2C11.25 1.58579 11.5858 1.25 12 1.25ZM4.39861 4.39861C4.6915 4.10572 5.16638 4.10572 5.45927 4.39861L5.85211 4.79145C6.145 5.08434 6.145 5.55921 5.85211 5.85211C5.55921 6.145 5.08434 6.145 4.79145 5.85211L4.39861 5.45927C4.10572 5.16638 4.10572 4.6915 4.39861 4.39861ZM19.6011 4.39887C19.894 4.69176 19.894 5.16664 19.6011 5.45953L19.2083 5.85237C18.9154 6.14526 18.4405 6.14526 18.1476 5.85237C17.8547 5.55947 17.8547 5.0846 18.1476 4.79171L18.5405 4.39887C18.8334 4.10598 19.3082 4.10598 19.6011 4.39887ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H3C3.41421 11.25 3.75 11.5858 3.75 12C3.75 12.4142 3.41421 12.75 3 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM20.25 12C20.25 11.5858 20.5858 11.25 21 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H21C20.5858 12.75 20.25 12.4142 20.25 12ZM18.1476 18.1476C18.4405 17.8547 18.9154 17.8547 19.2083 18.1476L19.6011 18.5405C19.894 18.8334 19.894 19.3082 19.6011 19.6011C19.3082 19.894 18.8334 19.894 18.5405 19.6011L18.1476 19.2083C17.8547 18.9154 17.8547 18.4405 18.1476 18.1476ZM5.85211 18.1479C6.145 18.4408 6.145 18.9157 5.85211 19.2086L5.45927 19.6014C5.16638 19.8943 4.6915 19.8943 4.39861 19.6014C4.10572 19.3085 4.10572 18.8336 4.39861 18.5407L4.79145 18.1479C5.08434 17.855 5.55921 17.855 5.85211 18.1479ZM12 20.25C12.4142 20.25 12.75 20.5858 12.75 21V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V21C11.25 20.5858 11.5858 20.25 12 20.25Z"
+                    fill="#1C274C"
+                  />
+                </svg>
+              </div>
+              <span>Light</span>
+            </div>
+            <div id="dark" class="theme-option">
+              <div class="icon">
+                <?xml version="1.0" encoding="utf-8"?>
+                <svg
+                  width="800px"
+                  height="800px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    fill="#1C274C"
+                  />
+                </svg>
+              </div>
+              <span>Dark</span>
+            </div>
+            <div id="auto" class="theme-option">
+              <div class="icon">
+                <?xml version="1.0" encoding="utf-8"?>
+                <svg
+                  fill="#000000"
+                  width="800px"
+                  height="800px"
+                  viewBox="0 0 24 24"
+                  id="Layer_1"
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11,13.723a1.984,1.984,0,0,1,0-3.446V7a1,1,0,0,1,2,0v3.277a1.984,1.984,0,0,1,0,3.446V16a1,1,0,0,1-2,0ZM12,0a1,1,0,0,0,0,2,10,10,0,0,1,0,20,1,1,0,0,0,0,2A12,12,0,0,0,12,0ZM1.827,6.784a1,1,0,1,0,1,1A1,1,0,0,0,1.827,6.784ZM2,12a1,1,0,1,0-1,1A1,1,0,0,0,2,12ZM4.221,3.207a1,1,0,1,0,1,1A1,1,0,0,0,4.221,3.207ZM7.779.841a1,1,0,1,0,1,1A1,1,0,0,0,7.779.841ZM1.827,15.216a1,1,0,1,0,1,1A1,1,0,0,0,1.827,15.216Zm2.394,3.577a1,1,0,1,0,1,1A1,1,0,0,0,4.221,18.793Zm3.558,2.366a1,1,0,1,0,1,1A1,1,0,0,0,7.779,21.159Z"
+                  />
+                </svg>
+              </div>
+              <span>Auto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="account"></div>
+    </header>
+    <main>
+      <aside></aside>
+      <article></article>
+      <aside></aside>
+    </main>
+    <footer></footer>
+  </body>
+</html>
