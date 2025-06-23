@@ -36,7 +36,8 @@ const appendParagraphs = (article) => {
 };
 
 // Toggle theme drawer visibility
-const toggleThemeDrawer = (drawer) => {
+const toggleThemeDrawer = () => {
+  const drawer = queryElement(SELECTORS.drawer);
   if (drawer) {
     drawer.classList.toggle("hide");
     drawer.classList.toggle("show");
@@ -50,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawer = queryElement(SELECTORS.drawer);
   const drawerToggle = queryElement(SELECTORS.drawerToggle);
   if (drawerToggle) {
-    drawerToggle.addEventListener("click", () => toggleThemeDrawer(drawer));
+    drawerToggle.addEventListener("click", toggleThemeDrawer);
   }
   if (drawer) {
     drawer.addEventListener("click", changeTheme);
